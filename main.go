@@ -13,13 +13,10 @@ const (
 )
 
 func main() {
-	log.SetReportCaller(true)
-	r := mux.NewRouter()
-	r.HandleFunc("/", handleRoute)
-	r.HandleFunc("/login", handleLogin)
+	http.HandleFunc("/", handleRoute)
+	http.HandleFunc("/login", handleLogin)
 
-	log.Infoln("Listening at ", baseURL)
-	log.Fatal(http.ListenAndServe(baseURL, r))
+	http.ListenAndServe(baseURL, nil)
 }
 
 func handleRoute(w http.ResponseWriter, r *http.Request) {
